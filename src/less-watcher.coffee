@@ -87,6 +87,7 @@ compileLessScript = (file) ->
     prefix = if argv.p == true then '' else argv.p
     fnGetOutputFile = (file) ->
         relativePath = path.relative argv.d, file
+        file = path.join argv.o, relativePath;
         if not path.existsSync path.dirname file
             mkdirP.sync path.dirname file
         file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
