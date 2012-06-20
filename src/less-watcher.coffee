@@ -41,8 +41,11 @@ specs = require('optimist')
         .default('d', '.')
         .describe('d', 'Specify which directory to scan.')
 
-        .default('p', '.less.')
+        .default('p', '')
         .describe('p', 'Which prefix should the compiled files have? Default is style.less will be compiled to .less.style.css.')
+
+        .default('o', './')
+        .describe('o', 'Output directory. Default is ./')
 
         .boolean('h')
         .describe('h', 'Prints help')
