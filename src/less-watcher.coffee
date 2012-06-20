@@ -83,7 +83,7 @@ compileIfNeeded = (file) ->
 compileLessScript = (file) ->
     prefix = if argv.p == true then '' else argv.p
     fnGetOutputFile = (file) ->
-        file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
+        file = file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
         console.log file
         file
     watcher_lib.compileFile("lessc #{ file }", file, fnGetOutputFile)
