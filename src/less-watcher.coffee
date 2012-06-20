@@ -58,6 +58,8 @@ if specs.parse(process.argv).h
 else
     argv = specs.argv
 
+path = require 'path'
+
 
 # Use `watcher-lib`, a library that abstracts away most of the implementation details.
 # This library also makes it possible to implement any watchers (see coffee-watcher for an example).
@@ -83,6 +85,8 @@ compileIfNeeded = (file) ->
 compileLessScript = (file) ->
     prefix = if argv.p == true then '' else argv.p
     fnGetOutputFile = (file) ->
+        baseName = path.basename file
+        console.log relativePath = path.relative argv.d file
         file = file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
         console.log file
         file
