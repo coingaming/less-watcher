@@ -89,6 +89,7 @@ compileLessScript = (file) ->
         relativePath = path.relative argv.d, file
         if not path.existsSync path.dirname file
             mkdirp path.dirname file
+            console.log path.dirnaame file
         file = path.join argv.o, relativePath;
         file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
     watcher_lib.compileFile("lessc #{ file }", file, fnGetOutputFile)
