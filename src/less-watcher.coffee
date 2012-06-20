@@ -79,7 +79,10 @@ compileIfNeeded = (file) ->
 # Compiles a file using `lessc`. Compilation errors are printed out to stdout.
 compileLessScript = (file) ->
     prefix = if argv.p == true then '' else argv.p
-    fnGetOutputFile = (file) -> file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
+    fnGetOutputFile = (file) ->
+        file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
+        console.log file
+        file
     watcher_lib.compileFile("lessc #{ file }", file, fnGetOutputFile)
 
 
