@@ -59,6 +59,7 @@ else
     argv = specs.argv
 
 path = require 'path'
+mkdirp = require 'mkdirp'
 
 
 # Use `watcher-lib`, a library that abstracts away most of the implementation details.
@@ -86,6 +87,8 @@ compileLessScript = (file) ->
     prefix = if argv.p == true then '' else argv.p
     fnGetOutputFile = (file) ->
         relativePath = path.relative argv.d, file
+        if not path.existsSync path.dirname file
+            mkdirp path.dirname file
         file = path.join argv.o, relativePath;
         file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
     watcher_lib.compileFile("lessc #{ file }", file, fnGetOutputFile)
