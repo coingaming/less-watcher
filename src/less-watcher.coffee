@@ -46,6 +46,9 @@ specs = require('optimist')
 
         .default('o', './')
         .describe('o', 'Output directory. Default is ./')
+        
+        .default('i', './')
+        .describe('i', 'Include paths. Default is ./')
 
         .boolean('h')
         .describe('h', 'Prints help')
@@ -91,7 +94,7 @@ compileLessScript = (file) ->
         if not path.existsSync path.dirname file
             mkdirp.sync path.dirname file
         file.replace(/([^\/\\]+)\.less/, "#{prefix}$1.css")
-    watcher_lib.compileFile("lessc #{ file }", file, fnGetOutputFile)
+    watcher_lib.compileFile("lessc --include-path=\"#{ argv.i }\" #{ file }", file, fnGetOutputFile)
 
 
 # Starts a poller that polls each second in a directory that's
