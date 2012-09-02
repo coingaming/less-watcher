@@ -67,17 +67,14 @@ else
 path = require 'path'
 mkdirp = require 'mkdirp'
 
-
 # Use `watcher-lib`, a library that abstracts away most of the implementation details.
 # This library also makes it possible to implement any watchers (see coffee-watcher for an example).
 watcher_lib = require 'watcher_lib'
-
 
 # Searches through a directory structure for *.less files using `find`.
 # For each .less file it runs `compileIfNeeded` to compile the file if it's modified.
 findLessFiles = (dir) ->
     watcher_lib.findFiles('*.less', dir, compileIfNeeded)
-
 
 # Keeps a track of modified times for .less files in a in-memory object,
 # if a .less file is modified it recompiles it using compileLessScript.
@@ -86,7 +83,6 @@ findLessFiles = (dir) ->
 WATCHED_FILES = {}
 compileIfNeeded = (file) ->
     watcher_lib.compileIfNeeded(WATCHED_FILES, file, compileLessScript)
-
 
 # Compiles a file using `lessc`. Compilation errors are printed out to stdout.
 compileLessScript = (file) ->
